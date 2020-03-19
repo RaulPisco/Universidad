@@ -13,6 +13,14 @@ namespace ContosoUniversity.Controllers
 {
     public class StudentsController : Controller
     {
+
+        private IStudentRepository studentRepository;
+
+        public StudentsController()
+        {
+            this.studentRepository = new StudentRepository(new SchoolContext());
+        }
+
         private SchoolContext db = new SchoolContext();
 
         // GET: Students
@@ -35,6 +43,14 @@ namespace ContosoUniversity.Controllers
             }
             return View(student);
         }
+        //
+        /*
+       public ViewResult Details(int id)
+      {
+         Student student = studentRepository.GetStudentByID(id);
+         return View(student);
+      }
+      */
 
         // GET: Students/Create
         public ActionResult Create()
